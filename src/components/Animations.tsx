@@ -129,16 +129,20 @@ export function HamburgerMenu() {
         <span style={{ width: 22, height: 1, background: "#0a0a0a", display: "block", transition: "opacity 0.3s", opacity: open ? 0 : 1 }} />
         <span style={{ width: 22, height: 1, background: "#0a0a0a", display: "block", transition: "transform 0.3s, opacity 0.3s", transform: open ? "translateY(-6px) rotate(-45deg)" : "none" }} />
       </button>
-      {open && (
-        <div style={menuStyle}>
-          {links.map((link) => (
-            <a key={link.label} href={link.href} style={linkStyle} onClick={() => setOpen(false)}>
-              {link.label}
-            </a>
-          ))}
-        </div>
-      )}
-      <style>{"@media(max-width:720px){.hamburger{display:flex!important;}} .hamburger{display:none;}"}</style>
+      <div style={{...menuStyle, animation: open ? "menuIn 0.35s cubic-bezier(0.6,0.05,0.2,1) forwards" : "menuOut 0.3s cubic-bezier(0.6,0.05,0.2,1) forwards", pointerEvents: open ? "auto" : "none"}}>
+        {links.map((link, i) => (
+          <a key={link.label} href={link.href} style={{...linkStyle, animation: open ? `linkIn 0.4s cubic-bezier(0.6,0.05,0.2,1) ${i * 60 + 80}ms both` : "none"}} onClick={() => setOpen(false)}>
+            {link.label}
+          </a>
+        ))}
+      </div>
+      <style>{`
+        @media(max-width:720px){.hamburger{display:flex!important;}}
+        .hamburger{display:none;}
+        @keyframes menuIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes menuOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-8px); } }
+        @keyframes linkIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+      `}</style>
     </>
   );
 }
