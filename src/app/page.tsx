@@ -108,7 +108,7 @@ export default async function Home() {
                 <span style={{fontFamily:"'JetBrains Mono',monospace",fontSize:12,color:"#6b6b6b"}}>{role.years}</span>
                 <span style={{fontWeight:500,fontSize:28,letterSpacing:"-0.02em"}}>{role.company}</span>
                 <span style={{fontSize:14,color:"#6b6b6b"}}>{role.title}</span>
-                {role.tag&&<span className="xp-arr" style={{justifySelf:"end" as const,fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:"0.1em",textTransform:"uppercase" as const,color:"#6b6b6b"}}>{role.tag} →</span>}
+                
               </div>
             ))}
           </div>
