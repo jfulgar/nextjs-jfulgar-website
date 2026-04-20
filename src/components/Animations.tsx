@@ -105,7 +105,7 @@ export function HamburgerMenu() {
         <span className={`hb-line ${open ? "hb-open-2" : ""}`} />
         <span className={`hb-line ${open ? "hb-open-3" : ""}`} />
       </button>
-      <div className={`mobile-menu ${open ? "mobile-menu-open" : ""}`}>
+      <div className={`mobile-menu ${open ? "mobile-menu-open" : ""}`} style={{position:"fixed",top:0,left:0,right:0,bottom:0,background:"#ffffff",zIndex:199,display:"flex",flexDirection:"column" as const,justifyContent:"center",alignItems:"stretch",opacity:open?1:0,pointerEvents:open?"auto":"none",transition:"opacity 0.3s"}}>
         {links.map(({ label, href }) => (
           <a key={label} href={href} className="mobile-menu-link" onClick={() => setOpen(false)}>
             {label}
