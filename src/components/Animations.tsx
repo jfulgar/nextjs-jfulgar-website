@@ -54,47 +54,13 @@ export function ParallaxMark() {
 
 export function AvailableStatus() {
   const [hovered, setHovered] = React.useState(false);
+  const dotStyle: React.CSSProperties = { width: 6, height: 6, borderRadius: "50%", display: "inline-block", transition: "background 0.3s", background: hovered ? "#e74c3c" : "#2ecc71", animation: hovered ? "pulseRed 1.5s infinite" : "pulse 2s infinite" };
+  const wrapStyle: React.CSSProperties = { display: "flex", alignItems: "center", gap: 8, fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: "#6b6b6b", textDecoration: "none", cursor: "pointer" };
   return (
-    
-      href="#contact"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: 8,
-        fontFamily: "JetBrains Mono, monospace",
-        fontSize: 11,
-        letterSpacing: "0.12em",
-        textTransform: "uppercase" as const,
-        color: "#6b6b6b",
-        textDecoration: "none",
-        transition: "color 0.3s",
-        cursor: "pointer",
-      }}
-    >
-      <span style={{
-        width: 6,
-        height: 6,
-        borderRadius: "50%",
-        background: hovered ? "#e74c3c" : "#2ecc71",
-        display: "inline-block",
-        transition: "background 0.3s, box-shadow 0.3s",
-        boxShadow: hovered
-          ? "0 0 0 0 rgba(231,76,60,0.6)"
-          : "0 0 0 0 rgba(46,204,113,0.6)",
-        animation: hovered ? "pulseRed 1.5s infinite" : "pulse 2s infinite",
-      }} />
-      <span style={{ transition: "opacity 0.2s", opacity: 1 }}>
-        {hovered ? "Busy" : "Available"}
-      </span>
-      <style>{`
-        @keyframes pulseRed {
-          0% { box-shadow: 0 0 0 0 rgba(231,76,60,0.6); }
-          70% { box-shadow: 0 0 0 8px rgba(231,76,60,0); }
-          100% { box-shadow: 0 0 0 0 rgba(231,76,60,0); }
-        }
-      `}</style>
+    <a href="#contact" style={wrapStyle} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
+      <span style={dotStyle} />
+      <span>{hovered ? "Busy" : "Available"}</span>
+      <style>{"@keyframes pulseRed { 0% { box-shadow: 0 0 0 0 rgba(231,76,60,0.6); } 70% { box-shadow: 0 0 0 8px rgba(231,76,60,0); } 100% { box-shadow: 0 0 0 0 rgba(231,76,60,0); } }"}</style>
     </a>
   );
 }
