@@ -49,7 +49,7 @@ export function ParallaxMark() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  return <div ref={ref} className="hero-mark" aria-hidden="true">ACE</div>;
+  return <div ref={ref} className="hero-mark" aria-hidden="true">ΛCΞ</div>;
 }
 
 export function AvailableStatus() {
