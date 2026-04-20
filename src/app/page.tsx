@@ -215,7 +215,7 @@ export default async function Home() {
         <div className="footer-base" style={{paddingTop:40,display:"flex",justifyContent:"space-between",alignItems:"center",fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:"0.1em",textTransform:"uppercase" as const,color:"#6b6b6b"}}>
           <span>© {new Date().getFullYear()} {String(new Date().getMonth()+1).padStart(2,"0")} {String(new Date().getDate()).padStart(2,"0")} · JFULGAR DESIGN INC.</span>
           <span style={{color:"#0a0a0a"}}>ΛCΞ ♠</span>
-          <span>v26.04 / ONE PAGE</span>
+          <span>v{process.env.NEXT_PUBLIC_COMMIT_COUNT ?? "18"} / ONETWOFIVE</span>
         </div>
       </footer>
 
