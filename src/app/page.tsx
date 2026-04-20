@@ -130,7 +130,7 @@ export default async function Home() {
             {work.map((item:any,i:number)=>{
               const span=item.gridSpan??"6";
               return(
-                <MagneticCard key={i} span={span} style={{gridColumn:"span "+span,background:"#f4f4f2",overflow:"hidden",cursor:"pointer"}}>
+                <MagneticCard key={i} span={span} style={{background:"#f4f4f2",overflow:"hidden",cursor:"pointer"}}>
                   <div className="cover-inner" style={{aspectRatio:"16/10",position:"relative",background:"linear-gradient(135deg,#f4f4f2 0%,#e6e6e3 100%)",overflow:"hidden",transition:"transform 0.5s cubic-bezier(0.2,0.7,0.2,1)"}}>
                     <div style={{position:"absolute",inset:0,backgroundImage:"repeating-linear-gradient(135deg,transparent 0 20px,rgba(0,0,0,0.03) 20px 21px)"}}/>
                     {item.coverLabel&&<span style={{position:"absolute",top:20,left:20,fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:"0.12em",textTransform:"uppercase" as const,color:"#6b6b6b"}}>{item.coverLabel}</span>}
@@ -237,7 +237,9 @@ export default async function Home() {
         .work-span-7 { grid-column: span 7; }
         .work-span-6 { grid-column: span 6; }
         .work-span-5 { grid-column: span 5; }
+        .work-span-4 { grid-column: span 4; }
         .work-span-12 { grid-column: span 12; }
+        .work-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
         @media(max-width:720px){
           body{cursor:auto!important;} a,button{cursor:pointer!important;}
           .desktop-nav{display:none!important;}
