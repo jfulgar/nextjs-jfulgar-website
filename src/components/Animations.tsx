@@ -131,7 +131,6 @@ export function HamburgerMenu() {
       </button>
       {open && (
         <div style={menuStyle}>
-          <button onClick={() => setOpen(false)} style={{ position: "absolute", top: 20, right: 24, background: "none", border: "none", fontSize: 20, cursor: "pointer", color: "#0a0a0a", fontFamily: "JetBrains Mono, monospace", padding: 8 }}>✕</button>
           {links.map((link) => (
             <a key={link.label} href={link.href} style={linkStyle} onClick={() => setOpen(false)}>
               {link.label}
