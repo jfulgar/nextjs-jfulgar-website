@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export function Cursor() {
   const dot = useRef<HTMLDivElement>(null);
@@ -34,9 +34,8 @@ export function Cursor() {
   }, []);
   return (
     <>
-      <div ref={ring} style={{position:"fixed",top:0,left:0,width:36,height:36,border:"1px solid #fff",borderRadius:"50%",pointerEvents:"none",zIndex:9999,mixBlendMode:"difference",transition:"width 0.3s,height 0.3s"}} className="cursor-ring" />
-      <div ref={dot} style={{position:"fixed",top:0,left:0,width:6,height:6,background:"#fff",borderRadius:"50%",pointerEvents:"none",zIndex:9999,mixBlendMode:"difference"}} />
-      <style>{"body{cursor:none!important;} a,button{cursor:none!important;} .cur-hover{width:64px!important;height:64px!important;margin:-14px 0 0 -14px;}"}</style>
+      <div ref={ring} className="cursor-ring" />
+      <div ref={dot} className="cursor-dot" />
     </>
   );
 }
@@ -50,11 +49,7 @@ export function ParallaxMark() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  return (
-    <div ref={ref} aria-hidden="true" style={{position:"absolute",right:"-4vw",bottom:"14vh",fontFamily:"inherit",fontWeight:600,fontSize:"clamp(140px,28vw,420px)",letterSpacing:"-0.06em",lineHeight:0.8,color:"transparent",WebkitTextStroke:"1px #e8e8e8",pointerEvents:"none",zIndex:-1,userSelect:"none"}}>
-      ACE
-    </div>
-  );
+  return <div ref={ref} className="hero-mark" aria-hidden="true">ACE</div>;
 }
 
 export function ScrollReveal() {
@@ -71,7 +66,7 @@ export function ScrollReveal() {
   return null;
 }
 
-export function MagneticCard({ children, style, onClick }: { children: React.ReactNode, style?: React.CSSProperties, onClick?: () => void }) {
+export function MagneticCard({ children, style, span }: { children: React.ReactNode, style?: React.CSSProperties, span?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
@@ -91,5 +86,43 @@ export function MagneticCard({ children, style, onClick }: { children: React.Rea
     el.addEventListener("mouseleave", onLeave);
     return () => { el.removeEventListener("mousemove", onMove); el.removeEventListener("mouseleave", onLeave); };
   }, []);
-  return <div ref={ref} data-hover style={style} onClick={onClick}>{children}</div>;
+  return <div ref={ref} data-hover style={{...style, gridColumn: `span ${span}`}}>{children}</div>;
+}
+
+export function HamburgerMenu() {
+  const [open, setOpen] = useState(false);
+  const links = [
+    { label: "Work", href: "#work" },
+    { label: "About", href: "#about" },
+    { label: "Experience", href: "#experience" },
+    { label: "Ecosystems", href: "#ecosystems" },
+    { label: "Contact", href: "#contact" },
+  ];
+  return (
+    <>
+      <button onClick={() => setOpen(!open)} className="hamburger" aria-label="Menu">
+        <span className={`hb-line ${open ? "hb-open-1" : ""}`} />
+        <span className={`hb-line ${open ? "hb-open-2" : ""}`} />
+        <span className={`hb-line ${open ? "hb-open-3" : ""}`} />
+      </button>
+      <div className={`mobile-menu ${open ? "mobile-menu-open" : ""}`}>
+        {links.map(({ label, href }) => (
+          <a key={label} href={href} className="mobile-menu-link" onClick={() => setOpen(false)}>
+            {label}
+          </a>
+        ))}
+      </div>
+      <style>{`
+        .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; z-index: 201; position: relative; cursor: pointer; }
+        .hb-line { width: 22px; height: 1px; background: #0a0a0a; display: block; transition: transform 0.3s, opacity 0.3s; }
+        .hb-open-1 { transform: translateY(6px) rotate(45deg); }
+        .hb-open-2 { opacity: 0; }
+        .hb-open-3 { transform: translateY(-6px) rotate(-45deg); }
+        .mobile-menu { position: fixed; inset: 0; background: #fff; z-index: 200; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 40px; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        .mobile-menu-open { opacity: 1; pointer-events: auto; }
+        .mobile-menu-link { font-family: "Inter Tight", sans-serif; font-weight: 500; font-size: clamp(28px, 8vw, 48px); letter-spacing: -0.02em; color: #0a0a0a; text-decoration: none; }
+        @media (max-width: 720px) { .hamburger { display: flex !important; } }
+      `}</style>
+    </>
+  );
 }
