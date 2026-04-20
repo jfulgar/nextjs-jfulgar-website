@@ -89,7 +89,7 @@ export function ScrollReveal() {
   return null;
 }
 
-export function MagneticCard({ children, style, span }: { children: React.ReactNode, style?: React.CSSProperties, span?: string }) {
+export function MagneticCard({ children, style, span, onClick }: { children: React.ReactNode, style?: React.CSSProperties, span?: string, onClick?: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
@@ -109,7 +109,7 @@ export function MagneticCard({ children, style, span }: { children: React.ReactN
     el.addEventListener("mouseleave", onLeave);
     return () => { el.removeEventListener("mousemove", onMove); el.removeEventListener("mouseleave", onLeave); };
   }, []);
-  return <div ref={ref} data-hover className={`work-card work-span-${span}`} style={style}>{children}</div>;
+  return <div ref={ref} data-hover className={`work-card work-span-${span}`} style={style} onClick={onClick}>{children}</div>;
 }
 
 export function HamburgerMenu() {
