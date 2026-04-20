@@ -1,5 +1,6 @@
 import { client } from "@/sanity/client";
 import { Cursor, ParallaxMark, ScrollReveal, MagneticCard, HamburgerMenu, AvailableStatus } from "@/components/Animations";
+import { WorkSection } from "@/components/WorkSection";
 
 const SITE_QUERY = `{
   "settings": *[_type == "settings"][0],
