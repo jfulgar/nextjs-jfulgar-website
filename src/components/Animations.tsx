@@ -95,60 +95,51 @@ export function HamburgerMenu() {
     { label: "Work", href: "#work" },
     { label: "About", href: "#about" },
     { label: "Experience", href: "#experience" },
-    { label: "Ecosystems", href: "#ecosystems" },
+    { label: "Disciplines", href: "#ecosystems" },
     { label: "Contact", href: "#contact" },
   ];
+  const menuStyle: React.CSSProperties = {
+    position: "fixed", top: 0, left: 0,
+    width: "100vw", height: "100vh",
+    background: "#ffffff", zIndex: 250,
+    display: "flex", flexDirection: "column",
+    justifyContent: "center", alignItems: "stretch",
+  };
+  const linkStyle: React.CSSProperties = {
+    fontFamily: "Inter Tight, sans-serif",
+    fontWeight: 500,
+    fontSize: "clamp(28px, 8vw, 44px)",
+    letterSpacing: "-0.02em",
+    color: "#0a0a0a",
+    textDecoration: "none",
+    padding: "20px 40px",
+    borderBottom: "1px solid #e8e8e8",
+    textAlign: "center",
+    display: "block",
+  };
   return (
     <>
-      <button onClick={() => setOpen(!open)} className="hamburger" aria-label="Menu">
-        <span className={`hb-line ${open ? "hb-open-1" : ""}`} />
-        <span className={`hb-line ${open ? "hb-open-2" : ""}`} />
-        <span className={`hb-line ${open ? "hb-open-3" : ""}`} />
+      <button
+        onClick={() => setOpen(!open)}
+        className="hamburger"
+        aria-label="Menu"
+        style={{ display: "flex", flexDirection: "column", gap: 5, background: "none", border: "none", padding: 4, zIndex: 300, position: "relative", cursor: "pointer" }}
+      >
+        <span style={{ width: 22, height: 1, background: "#0a0a0a", display: "block", transition: "transform 0.3s, opacity 0.3s", transform: open ? "translateY(6px) rotate(45deg)" : "none" }} />
+        <span style={{ width: 22, height: 1, background: "#0a0a0a", display: "block", transition: "opacity 0.3s", opacity: open ? 0 : 1 }} />
+        <span style={{ width: 22, height: 1, background: "#0a0a0a", display: "block", transition: "transform 0.3s, opacity 0.3s", transform: open ? "translateY(-6px) rotate(-45deg)" : "none" }} />
       </button>
-      <div className={`mobile-menu ${open ? "mobile-menu-open" : ""}`} style={{position:"fixed",top:0,left:0,right:0,bottom:0,background:"#ffffff",zIndex:199,display:"flex",flexDirection:"column" as const,justifyContent:"center",alignItems:"stretch",opacity:open?1:0,pointerEvents:open?"auto":"none",transition:"opacity 0.3s"}}>
-        {links.map(({ label, href }) => (
-          <a key={label} href={href} className="mobile-menu-link" onClick={() => setOpen(false)}>
-            {label}
-          </a>
-        ))}
-      </div>
-      <style>{`
-        .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; z-index: 201; position: relative; cursor: pointer; }
-        .hb-line { width: 22px; height: 1px; background: #0a0a0a; display: block; transition: transform 0.3s, opacity 0.3s; }
-        .hb-open-1 { transform: translateY(6px) rotate(45deg); }
-        .hb-open-2 { opacity: 0; }
-        .hb-open-3 { transform: translateY(-6px) rotate(-45deg); }
-        .mobile-menu {
-          position: fixed; inset: 0;
-          background: #ffffff;
-          z-index: 200;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          gap: 0;
-          opacity: 0;
-          pointer-events: none;
-          transition: opacity 0.3s;
-        }
-        .mobile-menu-open { opacity: 1; pointer-events: auto; }
-        .mobile-menu-link {
-          font-family: "Inter Tight", sans-serif;
-          font-weight: 500;
-          font-size: clamp(28px, 8vw, 44px);
-          letter-spacing: -0.02em;
-          color: #0a0a0a;
-          text-decoration: none;
-          width: 100%;
-          text-align: center;
-          padding: 20px 40px;
-          border-bottom: 1px solid #e8e8e8;
-          transition: background 0.2s;
-        }
-        .mobile-menu-link:first-child { border-top: 1px solid #e8e8e8; }
-        .mobile-menu-link:active { background: #f4f4f2; }
-        @media (max-width: 720px) { .hamburger { display: flex !important; } }
-      `}</style>
+      {open && (
+        <div style={menuStyle}>
+          <button onClick={() => setOpen(false)} style={{ position: "absolute", top: 20, right: 24, background: "none", border: "none", fontSize: 20, cursor: "pointer", color: "#0a0a0a", fontFamily: "JetBrains Mono, monospace", padding: 8 }}>✕</button>
+          {links.map((link) => (
+            <a key={link.label} href={link.href} style={linkStyle} onClick={() => setOpen(false)}>
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
+      <style>{"@media(max-width:720px){.hamburger{display:flex!important;}} .hamburger{display:none;}"}</style>
     </>
   );
 }

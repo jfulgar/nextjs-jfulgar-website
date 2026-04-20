@@ -27,18 +27,14 @@ export default async function Home() {
     <><Cursor /><ScrollReveal />
     <main style={{fontFamily:"'Inter Tight','Helvetica Neue',sans-serif",background:"#fff",color:"#0a0a0a",minHeight:"100vh",overflowX:"hidden"}}>
 
-      <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:100,padding:"20px 40px",display:"flex",alignItems:"center",justifyContent:"space-between",background:"rgba(255,255,255,0.85)",backdropFilter:"blur(14px)",WebkitBackdropFilter:"blur(14px)",borderBottom:"1px solid #e8e8e8"}}>
-        <a href="#top" style={{fontWeight:600,fontSize:15,letterSpacing:"0.22em",textDecoration:"none",color:"#0a0a0a"}}>♠ ACE</a>
-        <div className="desktop-nav" style={{display:"flex",gap:32}}>
-          {[["Work","#work"],["About","#about"],["Experience","#experience"],["Disciplines","#ecosystems"],["Contact","#contact"]].map(([l,href])=>(
-            <a key={l} href={href} style={{fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:"0.12em",textTransform:"uppercase" as const,color:"#6b6b6b",textDecoration:"none"}}>{l}</a>
-          ))}
-        </div>
-        <div className="desktop-status" style={{display:"flex",alignItems:"center",gap:8,fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:"0.12em",textTransform:"uppercase" as const,color:"#6b6b6b"}}>
+      <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:100,padding:"20px 40px",display:"grid",gridTemplateColumns:"1fr 1fr 1fr",alignItems:"center",background:"rgba(255,255,255,0.85)",backdropFilter:"blur(14px)",WebkitBackdropFilter:"blur(14px)",borderBottom:"1px solid #e8e8e8"}}>
+        <a href="#top" style={{fontWeight:600,fontSize:15,letterSpacing:"0.22em",textDecoration:"none",color:"#0a0a0a"}}>ΛCΞ ♠</a>
+        
+        <div className="desktop-status" style={{display:"flex",alignItems:"center",justifyContent:"center",gap:8,fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:"0.12em",textTransform:"uppercase" as const,color:"#6b6b6b"}}>
           <span style={{width:6,height:6,borderRadius:"50%",background:"#2ecc71",display:"inline-block",animation:"pulse 2s infinite"}}/>
-          Available for select projects
+          Available
         </div>
-        <HamburgerMenu />
+        <div style={{display:"flex",justifyContent:"flex-end"}}><HamburgerMenu /></div>
       </nav>
 
       <section id="top" style={{minHeight:"100vh",paddingTop:140,paddingBottom:80,paddingLeft:40,paddingRight:40,maxWidth:1440,margin:"0 auto",display:"flex",flexDirection:"column" as const,justifyContent:"space-between",position:"relative"}}>
