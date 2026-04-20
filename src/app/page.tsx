@@ -1,5 +1,5 @@
 import { client } from "@/sanity/client";
-import { Cursor, ParallaxMark, ScrollReveal, MagneticCard, HamburgerMenu } from "@/components/Animations";
+import { Cursor, ParallaxMark, ScrollReveal, MagneticCard, HamburgerMenu, AvailableStatus } from "@/components/Animations";
 
 const SITE_QUERY = `{
   "settings": *[_type == "settings"][0],
