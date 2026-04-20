@@ -237,6 +237,10 @@ export default async function Home() {
         @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
         @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(46,204,113,0.6)}70%{box-shadow:0 0 0 8px rgba(46,204,113,0)}100%{box-shadow:0 0 0 0 rgba(46,204,113,0)}}
         body{cursor:none!important;} a,button{cursor:none!important;}
+        .work-span-7 { grid-column: span 7; }
+        .work-span-6 { grid-column: span 6; }
+        .work-span-5 { grid-column: span 5; }
+        .work-span-12 { grid-column: span 12; }
         @media(max-width:720px){
           body{cursor:auto!important;} a,button{cursor:pointer!important;}
           .desktop-nav{display:none!important;}
@@ -251,7 +255,7 @@ export default async function Home() {
           .xp-row{grid-template-columns:1fr!important;gap:6px!important;}
           .xp-arr{display:none!important;}
           .work-grid{grid-template-columns:1fr!important;}
-          .work-card{grid-column:span 1!important;}
+          .work-card,.work-span-7,.work-span-6,.work-span-5,.work-span-12{grid-column:span 1!important;}
           .split-grid{grid-template-columns:1fr!important;}
           .split-pane{padding:32px 24px!important;min-height:0!important;}
           .footer-grid{grid-template-columns:1fr 1fr!important;}

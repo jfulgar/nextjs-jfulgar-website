@@ -86,7 +86,7 @@ export function MagneticCard({ children, style, span }: { children: React.ReactN
     el.addEventListener("mouseleave", onLeave);
     return () => { el.removeEventListener("mousemove", onMove); el.removeEventListener("mouseleave", onLeave); };
   }, []);
-  return <div ref={ref} data-hover style={{...style, gridColumn: `span ${span}`}}>{children}</div>;
+  return <div ref={ref} data-hover className={`work-card work-span-${span}`} style={style}>{children}</div>;
 }
 
 export function HamburgerMenu() {
