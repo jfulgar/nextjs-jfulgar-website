@@ -30,10 +30,7 @@ export default async function Home() {
       <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:100,padding:"20px 40px",display:"flex",alignItems:"center",justifyContent:"space-between",background:"rgba(255,255,255,0.85)",backdropFilter:"blur(14px)",WebkitBackdropFilter:"blur(14px)",borderBottom:"1px solid #e8e8e8"}}>
         <a href="#top" style={{fontWeight:600,fontSize:15,letterSpacing:"0.22em",textDecoration:"none",color:"#0a0a0a"}}>ΛCΞ ♠</a>
         
-        <div className="available-status" style={{display:"flex",alignItems:"center",justifyContent:"center",gap:8,fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:"0.12em",textTransform:"uppercase" as const,color:"#6b6b6b"}}>
-          <span style={{width:6,height:6,borderRadius:"50%",background:"#2ecc71",display:"inline-block",animation:"pulse 2s infinite"}}/>
-          Available
-        </div>
+        <AvailableStatus />
         <HamburgerMenu />
       </nav>
 
